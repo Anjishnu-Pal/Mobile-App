@@ -1,0 +1,84 @@
+"""
+Sensor data model and management
+"""
+
+from dataclasses import dataclass
+from datetime import datetime
+from typing import List
+
+
+@dataclass
+class SensorReading:
+    """Single sensor reading"""
+    timestamp: datetime
+    temperature: float  # in Celsius
+    ph: float  # pH value (0-14)
+    glucose: float  # in mg/dL
+    
+    def __str__(self):
+        return f"{self.timestamp} - Temp: {self.temperature}°C, pH: {self.ph}, Glucose: {self.glucose} mg/dL"
+
+
+class SensorData:
+    """Manages in-memory sensor data"""
+    
+    def __init__(self):
+        self.readings: List[SensorReading] = []
+        self.max_memory_readings = 10000  # Keep last 10000 readings in memory
+    
+    def add_reading(self, data: dict) -> None:
+        """Add a new sensor reading"""
+        reading = SensorReading(
+            timestamp=data.get('timestamp', datetime.now()),
+            temperature=float(data.get('temperature', 0)),
+            ph=float(data.get('ph', 7.0)),
+            glucose=float(data.get('glucose', 0))
+        )
+        self.readings.append(reading)
+        
+        # Trim old readings if necessary
+        if len(self.readings) > self.max_memory_readings:
+            self.readings = self.readings[-self.max_memory_readings:]
+    
+    def get_all_readings(self) -> List[SensorReading]:
+        """Get all stored readings"""
+        return self.readings.copy()
+    
+    def get_recent_readings(self, count: int) -> List[SensorReading]:
+        """Get the last N readings"""
+        return self.readings[-count:]
+    
+    def get_readings_since(self, timestamp: datetime) -> List[SensorReading]:
+        """Get readings since a specific time"""
+        return [r for r in self.readings if r.timestamp >= timestamp]
+    
+    def clear_readings(self) -> None:
+        """Clear all readings from memory"""
+        self.readings.clear()
+    
+    def get_statistics(self) -> dict:
+        """Get statistics of current readings"""
+        if not self.readings:
+            return {}
+        
+        temps = [r.temperature for r in self.readings]
+        ph_values = [r.ph for r in self.readings]
+        glucose_values = [r.glucose for r in self.readings]
+        
+        return {
+            'temperature': {
+                'min': min(temps),
+                'max': max(temps),
+                'avg': sum(temps) / len(temps)
+            },
+            'ph': {
+                'min': min(ph_values),
+                'max': max(ph_values),
+                'avg': sum(ph_values) / len(ph_values)
+            },
+            'glucose': {
+                'min': min(glucose_values),
+                'max': max(glucose_values),
+                'avg': sum(glucose_values) / len(glucose_values)
+            }
+        }

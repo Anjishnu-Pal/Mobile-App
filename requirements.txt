@@ -1,0 +1,24 @@
+# Requirements and Dependencies
+
+## Python Dependencies
+
+```
+# Core Framework
+kivy==2.1.0
+kivy-garden==0.1.5
+
+# Data Handling
+matplotlib==3.5.2
+numpy==1.23.1
+pandas==1.4.3
+
+# JNI and Android
+pyjnius==1.5.2
+cython==0.29.32
+
+# Testing
+pytest==7.1.2
+pytest-cov==3.0.0
+
+# Development Tools
+buildozer==1.4.0
