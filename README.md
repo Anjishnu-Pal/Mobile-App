@@ -4,6 +4,9 @@
 
 A comprehensive Android mobile application for monitoring health sensors (Temperature, pH, and Glucose) using the NHS 3152 sensor chip with **NFC (Near Field Communication)** wireless data exchange. The app provides real-time data visualization, persistent CSV storage, and interactive graphs.
 
+User manual: [USER_MANUAL.md](USER_MANUAL.md)
+Quick start (mobile): [QUICK_START_CARD.md](QUICK_START_CARD.md)
+
 ## Key Features
 
 - **👁️ Real-time Sensor Monitoring**: Temperature, pH, and Glucose level readings via NFC
