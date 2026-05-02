@@ -42,7 +42,7 @@ class DashboardScreen(BoxLayout):
         self.update_event = None
 
         # ── Title ─────────────────────────────────────────────────────────────
-        title = Label(text='SensorMonitor v1.09',
+        title = Label(text='SensorMonitor v1.10',
                       size_hint_y=0.08, bold=True, font_size='20sp')
         self.add_widget(title)
 

@@ -13,7 +13,7 @@ numpy==1.23.1
 pandas==1.4.3
 
 # JNI and Android
-pyjnius==1.5.2
+pyjnius==1.6.1
 cython==0.29.32
 
 # Testing

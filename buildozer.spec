@@ -6,7 +6,7 @@ package.domain = com.sensormonitor
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,java
 
-version = 1.09
+version = 1.10
 
 requirements = python3,kivy,pyjnius
 
@@ -29,6 +29,9 @@ android.manifest.intent_filters = nfc_intent_filter.xml
 
 # Services
 p4a.bootstrap = sdl2
+
+# P4A hook to fix pyjnius Python 3 compatibility
+p4a.hook = p4a_build_hook.py
 
 # Skip cython compilation
 android.archs = arm64-v8a

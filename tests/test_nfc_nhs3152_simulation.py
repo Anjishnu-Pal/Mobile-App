@@ -29,9 +29,9 @@ def build_nhs3152_payload(temp_c: float, ph: float, glucose_mgdl: float) -> byte
     """
     Build a 6-byte NHS 3152 sensor payload.
     Matches the format documented in SensorBridge.java:
-      Bytes 0-1 : Temperature   signed int16, 0.1 °C
-      Bytes 2-3 : pH            uint16, 0.01 pH units
-      Bytes 4-5 : Glucose       uint16, mg/dL
+            Bytes 0-1 : Temperature   signed int16, 0.1 °C (big-endian)
+            Bytes 2-3 : pH            uint16, 0.01 pH units (big-endian)
+            Bytes 4-5 : Glucose       uint16, mg/dL (big-endian)
     """
     temp_raw    = int(round(temp_c * 10))
     ph_raw      = int(round(ph * 100))
